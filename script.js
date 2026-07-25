@@ -1,9 +1,4 @@
-// ============================================================================
-// IMPORTANTE: incolla qui il link pubblico TestFlight non appena lo crei su
-// App Store Connect (App → TestFlight → Test pubblico → Link pubblico).
-// Finché resta "#" tutti i bottoni "Scarica la beta" restano disattivi.
-// ============================================================================
-const TESTFLIGHT_URL = "#";
+const TESTFLIGHT_URL = "https://testflight.apple.com/join/RbCuEGRZ";
 
 document.querySelectorAll('[data-tf]').forEach((el) => {
   if (TESTFLIGHT_URL === "#") {
