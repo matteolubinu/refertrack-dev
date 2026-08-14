@@ -1,5 +1,5 @@
 /* =========================================================================
-   Refertrack — pagina beta
+   Refertrack — sito ufficiale (app pubblicata su App Store)
    Token tradotti dal design system dell'app (DSColor/DSPalette/DashboardTheme):
    nero caldo + neutri caldi + i 3 pastelli decorativi (lavanda/pesca/rosa).
    ========================================================================= */
@@ -139,6 +139,14 @@ ul, ol { padding: 0; list-style: none; }
 .btn-ghost:hover { background: var(--bg-card); }
 .btn svg { flex: none; }
 
+/* Badge UFFICIALE Apple localizzato IT (`assets/appstore-it.svg`, scaricato da
+   tools.applemediaservices.com) — non ricostruirlo mai a mano. Variante "blk": nero con
+   cornice #a6a6a6, quindi resta leggibile anche sulla card CTA scura e in tema dark. */
+.appstore { display: inline-flex; }
+.appstore img { height: 54px; width: auto; display: block; transition: transform .15s ease; }
+.appstore:hover img { transform: translateY(-1px); }
+.nav .appstore img { height: 42px; }
+
 /* ------------------------------------------------------------------- Hero */
 .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 6vw, 72px); align-items: center; padding-top: clamp(24px, 5vw, 48px); }
 .eyebrow {
@@ -193,7 +201,7 @@ ul, ol { padding: 0; list-style: none; }
 .section-head h2 { font-weight: 700; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -0.02em; margin-top: 6px; }
 .section-head p { margin-top: 12px; color: var(--text-secondary); font-size: 16px; }
 
-/* --------------------------------------------------------------- Steps (beta) */
+/* --------------------------------------------------------------- Steps */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
 .step {
   background: var(--bg-card); border-radius: var(--r-l); padding: 24px;
@@ -205,8 +213,8 @@ ul, ol { padding: 0; list-style: none; }
 }
 .step h3 { font-weight: 600; font-size: 16.5px; }
 .step p { color: var(--text-secondary); font-size: 14.5px; }
-.beta-cta { text-align: center; margin-top: 32px; }
-.beta-note { margin-top: 12px; font-size: 13.5px; color: var(--text-tertiary); }
+.steps-cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.steps-note { font-size: 13.5px; color: var(--text-tertiary); text-align: center; }
 
 /* ---------------------------------------------------------------- Features */
 .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -220,6 +228,12 @@ ul, ol { padding: 0; list-style: none; }
 }
 .feat-card h3 { font-weight: 600; font-size: 17.5px; }
 .feat-card p { color: var(--text-secondary); font-size: 14.5px; }
+.pill {
+  display: inline-block; vertical-align: 2px; margin-left: 6px;
+  padding: 3px 9px; border-radius: var(--r-full);
+  background: var(--bg-inverse); color: var(--text-inverse);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+}
 .feat-card.lavender { background: var(--lavender-soft); }
 .feat-card.peach { background: var(--peach-soft); }
 .feat-card.rose { background: var(--rose-soft); }
@@ -227,13 +241,63 @@ ul, ol { padding: 0; list-style: none; }
 
 /* ---------------------------------------------------------------- Showcase */
 .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 72px); align-items: center; }
-.feat-row.rev .device { order: 2; }
+.feat-row + .feat-row { margin-top: clamp(56px, 9vw, 104px); }
+/* `order: -1` (non `2`): il device è già il secondo figlio nel DOM, quindi metterlo in
+   order 2 lo lasciava a destra e la riga "alternata" non alternava niente. */
+.feat-row.rev .device { order: -1; }
 .feat-copy .eyebrow { margin-bottom: 14px; }
 .feat-copy h3 { font-weight: 700; font-size: clamp(24px, 3.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; }
 .feat-copy p { margin-top: 14px; color: var(--text-secondary); font-size: 16px; max-width: 44ch; }
 .feat-copy ul { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
 .feat-copy li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--text-secondary); }
 .feat-copy li svg { color: var(--accent-green); flex: none; margin-top: 3px; }
+
+/* ---------------------------------------------------------------- Privacy */
+.privacy { background: var(--bg-surface); border-block: 1px solid var(--border-default); }
+.privacy-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 6vw, 64px); align-items: center; }
+.privacy-title { font-weight: 700; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -0.02em; line-height: 1.12; }
+.privacy-lead { margin-top: 14px; color: var(--text-secondary); font-size: 16px; max-width: 44ch; }
+.privacy-list { display: grid; gap: 18px; }
+.privacy-list .row { display: flex; gap: 14px; align-items: flex-start; }
+.privacy-list .row .ico {
+  width: 40px; height: 40px; border-radius: var(--r-m); flex: none;
+  display: grid; place-items: center; background: var(--lavender-soft); color: var(--text-primary);
+}
+.privacy-list .row h4 { font-size: 16.5px; font-weight: 700; }
+.privacy-list .row p { color: var(--text-secondary); font-size: 14.5px; margin-top: 2px; }
+.privacy-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
+  font-weight: 600; font-size: 14.5px; color: var(--accent-green);
+}
+.privacy-link:hover { text-decoration: underline; }
+
+/* ----------------------------------------------------------------- Prezzi */
+.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto; align-items: stretch; }
+.price {
+  display: flex; flex-direction: column;
+  background: var(--bg-surface); border: 1px solid var(--border-default);
+  border-radius: var(--r-xl); padding: 30px 28px; box-shadow: var(--shadow-card);
+}
+.price.premium {
+  position: relative;
+  border-color: color-mix(in srgb, var(--lavender) 60%, transparent);
+  background: linear-gradient(180deg, var(--lavender-soft), var(--bg-surface) 58%);
+}
+.price .tier { font-weight: 700; font-size: 18px; }
+.price .amount { font-weight: 700; font-size: 40px; letter-spacing: -0.02em; margin-top: 12px; }
+.price .amount small { font-size: 15px; font-weight: 500; color: var(--text-tertiary); }
+.price .sub { color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+.price ul { margin: 22px 0; display: grid; gap: 11px; }
+.price li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+.price li svg { flex: none; margin-top: 3px; color: var(--accent-green); }
+.price .btn { margin-top: auto; justify-content: center; }
+.price-tag {
+  position: absolute; top: 18px; right: 18px;
+  padding: 5px 12px; border-radius: var(--r-full);
+  background: var(--bg-inverse); color: var(--text-inverse);
+  font-size: 12px; font-weight: 600;
+}
+.price-note { margin: 26px auto 0; max-width: 620px; text-align: center; font-size: 13.5px; color: var(--text-tertiary); }
 
 /* -------------------------------------------------------------- CTA banner */
 .cta-card {
@@ -258,14 +322,25 @@ ul, ol { padding: 0; list-style: none; }
 .faq-q .chev { transition: transform .2s ease; color: var(--text-tertiary); flex: none; }
 .faq-item[data-open="true"] .chev { transform: rotate(180deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
-.faq-item[data-open="true"] .faq-a { max-height: 240px; }
+/* 420px, non 240: le risposte del sito pubblicato sono più lunghe di quelle della vecchia
+   pagina beta e su mobile (una riga = poche parole) venivano tagliate a metà. */
+.faq-item[data-open="true"] .faq-a { max-height: 420px; }
 .faq-a p { padding: 0 20px 18px; color: var(--text-secondary); font-size: 14.5px; }
 
 /* ---------------------------------------------------------------- Footer */
-.footer { border-top: 1px solid var(--border-default); padding: 32px 0; }
-.footer-inner { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
-.footer p { color: var(--text-tertiary); font-size: 13.5px; }
-.footer .brand { font-size: 14.5px; }
+.footer { border-top: 1px solid var(--border-default); padding: 44px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 32px; }
+.footer .brand { font-size: 15px; }
+.footer .desc { margin-top: 10px; color: var(--text-secondary); font-size: 14px; max-width: 34ch; }
+.footer h5 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-tertiary); }
+.footer ul { margin-top: 10px; display: grid; gap: 8px; }
+.footer li a { color: var(--text-secondary); font-size: 14.5px; }
+.footer li a:hover { color: var(--text-primary); }
+.footer-bottom {
+  margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border-default);
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;
+  color: var(--text-tertiary); font-size: 13px;
+}
 
 /* -------------------------------------------------------------- Responsive */
 @media (max-width: 860px) {
@@ -276,15 +351,18 @@ ul, ol { padding: 0; list-style: none; }
   .feat-row.rev .device { order: 0; }
   .steps { grid-template-columns: 1fr; }
   .feat-grid { grid-template-columns: 1fr; }
+  .privacy-grid { grid-template-columns: 1fr; }
+  .price-grid { grid-template-columns: 1fr; max-width: 460px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .nav-cta .theme-toggle:not(.theme-fab) { display: none; }
-  /* Il CTA "Scarica la beta" nel nav (largo, con testo) non ha spazio accanto a logo +
-     hamburger su schermi stretti e ci finiva sopra (fix 2026-07, "tutto rotta la navbar" —
-     più volte segnalato: il problema reale non era mai il theme-toggle una volta tolto,
-     era questo bottone). La stessa identica CTA vive già, prominente, nell'hero appena
-     sotto — nasconderla qui non toglie nessuna azione raggiungibile, solo la duplicazione
-     che non ci stava. */
-  .nav-cta .tf-cta { display: none; }
+  /* La CTA di download nel nav (prima il bottone "Scarica la beta", oggi il badge App Store)
+     non ha spazio accanto a logo + hamburger su schermi stretti e ci finiva sopra (fix
+     2026-07, "tutto rotta la navbar" — più volte segnalato: il problema reale non era mai il
+     theme-toggle una volta tolto, era questa CTA). La stessa identica azione vive già,
+     prominente, nell'hero appena sotto — nasconderla qui non toglie niente di raggiungibile,
+     solo la duplicazione che non ci stava. */
+  .nav-cta .appstore { display: none; }
   .nav-toggle { display: inline-flex; }
   .theme-fab {
     display: inline-grid; position: fixed; z-index: 60;

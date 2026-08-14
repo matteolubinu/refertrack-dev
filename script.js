@@ -1,19 +1,8 @@
-const TESTFLIGHT_URL = "https://testflight.apple.com/join/RbCuEGRZ";
-
-document.querySelectorAll('[data-tf]').forEach((el) => {
-  if (TESTFLIGHT_URL === "#") {
-    el.setAttribute('aria-disabled', 'true');
-    el.style.opacity = '0.55';
-    el.style.cursor = 'not-allowed';
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Il link pubblico TestFlight non è ancora stato pubblicato. Torna presto!');
-    });
-  } else {
-    el.href = TESTFLIGHT_URL;
-    el.target = '_blank';
-    el.rel = 'noopener';
-  }
+// I link all'App Store sono scritti direttamente nell'HTML (non più iniettati da qui: la
+// beta TestFlight aveva un link che poteva non esistere ancora, l'App Store no).
+document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach((el) => {
+  el.target = '_blank';
+  el.rel = 'noopener';
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
