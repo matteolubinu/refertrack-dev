@@ -17,12 +17,108 @@
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
 
+<link rel="canonical" href="https://matteolubinu.github.io/refertrack/" />
 <link rel="icon" href="assets/icon.png" type="image/png" />
 <link rel="apple-touch-icon" href="assets/icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20261018a" />
+<link rel="preload" href="fonts/schibsted-grotesk-Regular.woff" as="font" type="font/woff" crossorigin />
+<link rel="stylesheet" href="styles.css?v=20261018c" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Refertrack",
+      "operatingSystem": "iOS",
+      "applicationCategory": "HealthApplication",
+      "url": "https://matteolubinu.github.io/refertrack/",
+      "downloadUrl": "https://apps.apple.com/it/app/refertrack-referti-ed-esami/id6792460771",
+      "inLanguage": [
+        "it",
+        "en",
+        "de",
+        "fr",
+        "es"
+      ],
+      "description": "Refertrack legge i valori dei referti con l'OCR sul dispositivo e mostra l'andamento di ogni parametro nel tempo. Tiene anche il conto dei vaccini e delle scadenze dei richiami. I dati restano sull'iPhone.",
+      "screenshot": "https://matteolubinu.github.io/refertrack/assets/screens/01-dashboard.webp",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Gratis",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Refertrack+ annuale",
+          "price": "14.99",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Refertrack+ a vita",
+          "price": "44.99",
+          "priceCurrency": "EUR"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quanto costa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'app è gratuita e la lettura dei referti lo resta per sempre, senza limiti di scansioni. Refertrack+ costa €14,99 all'anno oppure €44,99 una tantum (a vita, senza rinnovo) e aggiunge confronto tra referti, un profilo in più, avvisi sui valori in movimento, condivisione del grafico, le date esatte dei richiami dei vaccini col libretto di famiglia e promemoria illimitati."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I miei dati sanitari sono al sicuro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì: foto e valori vengono elaborati sul tuo iPhone, mai su un server di Refertrack. Non c'è un account da creare, non c'è tracciamento e l'unico backup è quello del tuo iCloud personale, se lo attivi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Legge anche i referti in altre lingue?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. Refertrack parla italiano, inglese, francese, tedesco e spagnolo, e riconosce i nomi dei parametri anche sui referti stranieri in quelle lingue — utile se ti capita di fare esami all'estero."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tiene anche i vaccini?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. Fotografi il certificato vaccinale o inserisci le date a mano, e Refertrack calcola quando scade ogni richiamo sul calendario del tuo Paese (Italia, Germania, Francia, Spagna) e te lo ricorda. Sapere se un vaccino è scaduto o in regola è gratis; con Refertrack+ vedi le date esatte e gestisci il libretto di tutta la famiglia. Le scadenze sono indicative e non sostituiscono il parere del medico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Refertrack mi dice se un valore è preoccupante?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, e non è quello che vuole fare. Refertrack organizza i tuoi valori e ti mostra come si muovono rispetto agli intervalli di riferimento del laboratorio: non fa diagnosi e non sostituisce il parere del tuo medico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Su quali dispositivi funziona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Su iPhone con iOS 26 o successivo. I dati si sincronizzano tra i tuoi dispositivi tramite il tuo iCloud personale, se attivi la sincronizzazione."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <script>
   (function () {
     try {
@@ -36,6 +132,7 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#main">Vai ai contenuti</a>
 
 <header class="nav" id="nav">
   <div class="container nav-inner">
@@ -64,6 +161,8 @@
 </header>
 
 <span id="top"></span>
+
+<main id="main">
 
 <!-- ============================================================== HERO -->
 <section class="hero section">
@@ -383,6 +482,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <div class="container">
@@ -405,7 +505,7 @@
         <ul>
           <li><a href="https://apps.apple.com/it/app/refertrack-referti-ed-esami/id6792460771">App Store</a></li>
         </ul>
-        <h5 style="margin-top:22px;">Supporto</h5>
+        <h5 class="footer-gap">Supporto</h5>
         <ul>
           <li><a href="mailto:matteo.lubi@gmail.com">matteo.lubi@gmail.com</a></li>
         </ul>
@@ -420,7 +520,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Refertrack. Tutti i diritti riservati.</span>
-      <span>Fatto con cura in Italia 🇮🇹</span>
+      <span>Refertrack non è un dispositivo medico e non sostituisce il parere del medico.</span>
     </div>
   </div>
 </footer>

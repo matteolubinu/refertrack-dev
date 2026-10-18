@@ -1,3 +1,9 @@
+/* Schibsted Grotesk ospitato qui (OFL, fonts/OFL-Schibsted-Grotesk.txt): nessuna richiesta a Google Fonts. */
+@font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/schibsted-grotesk-Regular.woff") format("woff"); }
+@font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/schibsted-grotesk-Medium.woff") format("woff"); }
+@font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/schibsted-grotesk-SemiBold.woff") format("woff"); }
+@font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/schibsted-grotesk-Bold.woff") format("woff"); }
+
 /* =========================================================================
    Refertrack — sito ufficiale (app pubblicata su App Store)
    Token tradotti dal design system dell'app (DSColor/DSPalette/DashboardTheme):
@@ -12,7 +18,7 @@
 
   --text-primary:   #131312;
   --text-secondary: #6E6A65;
-  --text-tertiary:  #8C8781;
+  --text-tertiary:  #656561;
   --text-on-accent: #FFFFFF;
   --text-inverse:   #F4F2F0;
 
@@ -374,3 +380,11 @@ ul, ol { padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; }
 }
+
+
+/* Salto al contenuto e margine del secondo blocco del piè di pagina */
+.skip { position: absolute; left: 16px; top: -48px; z-index: 100; padding: 10px 16px; border-radius: 8px; background: var(--bg-inverse); color: #fff; font-size: 14px; text-decoration: none; }
+.skip:focus { top: 16px; }
+.footer-gap { margin-top: 22px; }
+.footer a { display: inline-block; padding: 6px 0; }
+.privacy-link { display: inline-block; padding: 8px 0; }
