@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://matteolubinu.github.io/refertrack/</loc><lastmod>2026-10-18</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://matteolubinu.github.io/refertrack/</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://matteolubinu.github.io/refertrack/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matteolubinu.github.io/refertrack/en/"/>
+  </url>
+  <url>
+    <loc>https://matteolubinu.github.io/refertrack/en/</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://matteolubinu.github.io/refertrack/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matteolubinu.github.io/refertrack/en/"/>
+  </url>
 </urlset>

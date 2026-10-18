@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Refertrack — Your lab results and vaccines, under control</title>
+<meta name="description" content="Refertrack reads your lab reports with on-device OCR and shows how each value changes over time. It also tracks your vaccines and when boosters are due. On the App Store for iPhone: reading reports is free, forever." />
+
+<!-- Open Graph / social — URL assoluti: gli scraper (WhatsApp, iMessage, LinkedIn) non risolvono path relativi -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://matteolubinu.github.io/refertrack/en/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Refertrack" />
+<meta property="og:title" content="Refertrack — Your lab results and vaccines, under control" />
+<meta property="og:description" content="Photograph the report: the values arrive on their own and become a trend over time. And your vaccines, with booster due dates. Everything stays on your iPhone. Download it free on the App Store." />
+<meta property="og:image" content="https://matteolubinu.github.io/refertrack/assets/screens/01-dashboard.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
+
+<link rel="canonical" href="https://matteolubinu.github.io/refertrack/en/" />
+<link rel="alternate" hreflang="it" href="https://matteolubinu.github.io/refertrack/" />
+<link rel="alternate" hreflang="en" href="https://matteolubinu.github.io/refertrack/en/" />
+<link rel="alternate" hreflang="x-default" href="https://matteolubinu.github.io/refertrack/" />
+<link rel="icon" href="../assets/icon.png" type="image/png" />
+<link rel="apple-touch-icon" href="../assets/icon.png" />
+<link rel="preload" href="../fonts/schibsted-grotesk-Regular.woff" as="font" type="font/woff" crossorigin />
+<link rel="stylesheet" href="../styles.css?v=20261018d" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Refertrack",
+      "operatingSystem": "iOS",
+      "applicationCategory": "HealthApplication",
+      "url": "https://matteolubinu.github.io/refertrack/en/",
+      "downloadUrl": "https://apps.apple.com/app/id6792460771",
+      "inLanguage": [
+        "en",
+        "it",
+        "de",
+        "fr",
+        "es"
+      ],
+      "description": "Refertrack reads the values of lab reports with on-device OCR and shows how each parameter changes over time. It also tracks vaccines and booster due dates. Your data stays on the iPhone.",
+      "screenshot": "https://matteolubinu.github.io/refertrack/assets/screens/01-dashboard.webp",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Refertrack+ yearly",
+          "price": "14.99",
+          "priceCurrency": "EUR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Refertrack+ lifetime",
+          "price": "44.99",
+          "priceCurrency": "EUR"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does it cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The app is free and report reading stays free forever, with no scan limits. Refertrack+ costs €14.99 a year or €44.99 one time (for life, no renewal) and adds comparison between reports, an extra profile, alerts on moving values, chart sharing, exact vaccine booster dates with a family record, and unlimited reminders."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my health data safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes: photos and values are processed on your iPhone, never on a Refertrack server. There is no account to create, no tracking, and the only backup is your personal iCloud, if you turn it on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it read reports in other languages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Refertrack speaks Italian, English, French, German and Spanish, and recognises parameter names on foreign reports in those languages, which is handy if you have tests done abroad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it track vaccines too?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You photograph the vaccination certificate or enter the dates by hand, and Refertrack works out when each booster is due using your country's schedule (Italy, Germany, France, Spain) and reminds you. Knowing whether a vaccine is overdue or up to date is free; with Refertrack+ you see the exact dates and manage the whole family's record. Due dates are indicative and do not replace your doctor's advice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Refertrack tell me if a value is worrying?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, and that is not what it sets out to do. Refertrack organises your values and shows how they move against the lab's reference ranges: it does not diagnose and does not replace your doctor's advice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which devices does it work on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On iPhone with iOS 26 or later. Data syncs between your devices through your personal iCloud, if you turn sync on."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('refertrack-theme');
+      if (t !== 'light' && t !== 'dark') {
+        t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Refertrack">
+      <img class="logo" src="../assets/icon.png" alt="" /> Refertrack
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#come-funziona">How it works</a>
+      <a href="#funzioni">Features</a>
+      <a href="#prezzi">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="lang-switch" href="../" hreflang="it" lang="it">Italiano</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark preview">
+        <svg class="ico-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="ico-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="appstore" href="https://apps.apple.com/app/id6792460771" aria-label="Download on the App Store">
+        <img src="../assets/appstore-en.svg" alt="" width="162" height="54" />
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<span id="top"></span>
+
+<main id="main">
+
+<!-- ============================================================== HERO -->
+<section class="hero section">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="dot"></span> Available on the App Store</span>
+      <h1>Your lab results and vaccines, finally <span class="accent">under control.</span></h1>
+      <p class="lead">Refertrack reads the values from your lab reports (photo or PDF) by itself and shows how each one changes over time. It also keeps track of your vaccines and when boosters are due, so there are no more loose papers or makeshift spreadsheets.</p>
+      <div class="hero-actions">
+        <a class="appstore" href="https://apps.apple.com/app/id6792460771" aria-label="Download on the App Store">
+          <img src="../assets/appstore-en.svg" alt="" width="162" height="54" />
+        </a>
+        <a class="btn btn-ghost" href="#come-funziona">How it works</a>
+      </div>
+      <p class="hero-reassure">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Reading your reports is free, forever · everything stays on your iPhone
+      </p>
+    </div>
+    <div class="hero-media reveal">
+      <div class="device">
+        <img src="../assets/screens/01-dashboard.webp" alt="Refertrack's home screen, with the out-of-range value and the latest reports" width="1000" height="2089" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= TRUST -->
+<section class="trust section-tight">
+  <div class="container trust-tags reveal">
+    <span class="tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Everything stays on your phone</span>
+    <span class="tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> No tracking</span>
+    <span class="tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M9 16h6M9 8h6"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg> Free report reading, forever</span>
+    <span class="tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-6-10a6 6 0 0 1 12 0c0 5.65-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg> Designed in Italy</span>
+  </div>
+</section>
+
+<!-- ===================================================== COME FUNZIONA -->
+<section class="section" id="come-funziona">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> In three steps</span>
+      <h2>From the lab sheet to a chart, in a minute</h2>
+      <p>You never retype anything: you take a photo, the app reads it, and from then on every check-up is added to the history of your values.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="num">1</span>
+        <h3>Photograph or import</h3>
+        <p>Take a photo of the report, import the lab's PDF, or pick an image you already have in your photo library.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <h3>Confirm the values</h3>
+        <p>On-device OCR reads each value and shows it next to the part of the report it came from. You confirm it before it is saved.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <h3>Watch the trend</h3>
+        <p>Each parameter goes into its own chart and joins your earlier check-ups, with the reference range always in view.</p>
+      </div>
+    </div>
+    <div class="steps-cta reveal">
+      <a class="appstore" href="https://apps.apple.com/app/id6792460771" aria-label="Download on the App Store">
+        <img src="../assets/appstore-en.svg" alt="" width="162" height="54" />
+      </a>
+      <p class="steps-note">Free on the App Store · requires an iPhone with iOS 26 or later. The app speaks Italian, English, French, German and Spanish; the screenshots on this page show the Italian version.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== FUNZIONI -->
+<section class="section" id="funzioni">
+  <div class="container">
+
+    <div class="feat-row reveal">
+      <div class="feat-copy">
+        <span class="eyebrow"><span class="dot"></span> Zero typing</span>
+        <h3>Photograph the report, the values arrive on their own</h3>
+        <p>Camera, a lab PDF or a photo already in your library: on-device OCR reads each value and shows it for you to confirm before saving. Never an invented number.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Scan, PDF or photo from your library</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Every value to confirm or correct</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Free, unlimited recognition</li>
+        </ul>
+      </div>
+      <div class="device">
+        <img src="../assets/screens/02-revisione.webp" alt="Reviewing a report in Refertrack: the value read by OCR next to the crop of the photo" width="1000" height="2089" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="feat-copy">
+        <span class="eyebrow"><span class="dot"></span> Time, not a single number</span>
+        <h3>Every value becomes a trend</h3>
+        <p>A single number says little. Refertrack joins the same parameter across reports and shows where it comes from and where it is heading, with the reference range highlighted.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One continuous chart across all check-ups</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Normal range always visible</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full history, every year, even on the free plan</li>
+        </ul>
+      </div>
+      <div class="device">
+        <img src="../assets/screens/03-parametro.webp" alt="The Vitamin D detail in Refertrack, with the trend chart and the normal range" width="1000" height="2089" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="feat-copy">
+        <span class="eyebrow"><span class="dot"></span> At a glance</span>
+        <h3>A whole report, summarised in one line</h3>
+        <p>As soon as it is saved, each check-up tells you how many values are out of range and what changed since last time, with parameters already grouped by category.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> How many values are out of range</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up or down compared with the previous check-up</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Blood count, lipids, thyroid and the other categories, kept apart</li>
+        </ul>
+      </div>
+      <div class="device">
+        <img src="../assets/screens/05-dettaglio.webp" alt="A check-up detail in Refertrack, with values grouped by category" width="1000" height="2089" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="feat-copy">
+        <span class="eyebrow"><span class="dot"></span> Archive</span>
+        <h3>Reports and documents, in one place</h3>
+        <p>Tests with their values on one side, documents on the other: prescriptions, ultrasounds, discharge letters. The original file is always there, ready to reopen or share.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Tests and documents, separate but together</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> The original document is always shareable</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> The app never deletes a report</li>
+        </ul>
+      </div>
+      <div class="device">
+        <img src="../assets/screens/04-referti.webp" alt="The list of reports in Refertrack, with the status of each check-up" width="1000" height="2089" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="feat-copy">
+        <span class="eyebrow"><span class="dot"></span> Not just blood tests</span>
+        <h3>Vaccines too, and when to repeat them</h3>
+        <p>Photograph your vaccination certificate or enter the dates by hand: Refertrack recognises the doses and works out when each booster is due, using your country's schedule. At a glance you see what is overdue, what is due soon and what is up to date.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Photo of the record or manual entry</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Schedules for Italy, Germany, France and Spain</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A reminder when a booster is getting close</li>
+        </ul>
+      </div>
+      <div class="device">
+        <img src="../assets/screens/06-vaccini.webp" alt="The vaccines overview in Refertrack: overdue, due soon and up-to-date counters, with the tetanus card overdue by 7 years" width="1000" height="2089" loading="lazy" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================== FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>And when you need a little more</h2>
+      <p>The features that matter after a few check-ups, when the archive starts to become a story.</p>
+    </div>
+    <div class="feat-grid reveal">
+      <div class="feat-card lavender">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M8 21H3v-5"/></svg></div>
+        <h3>Compare two reports <span class="pill">Refertrack+</span></h3>
+        <p>Compare two check-ups, parameter by parameter, and see right away what changed between them.</p>
+      </div>
+      <div class="feat-card peach">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>An extra profile <span class="pill">Refertrack+</span></h3>
+        <p>Keep a child's or a relative's reports and vaccines too, separate from yours, on the same phone.</p>
+      </div>
+      <div class="feat-card rose">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+        <h3>Check-up reminders</h3>
+        <p>Remember to repeat a test when it is due. One is always included; with Refertrack+ you can set as many as you like and get an alert when a value moves in the same direction for three check-ups in a row.</p>
+      </div>
+      <div class="feat-card plain">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></div>
+        <h3>The chart to show your doctor <span class="pill">Refertrack+</span></h3>
+        <p>Export a parameter's trend as an image and send it to your doctor, without making them leaf through ten reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== PRIVACY -->
+<section class="privacy section" id="privacy">
+  <div class="container privacy-grid">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span> Privacy, for real</span>
+      <h2 class="privacy-title">Your health data never leaves your phone.</h2>
+      <p class="privacy-lead">Refertrack has no server. Report reading, values and charts live on your iPhone: there is no account to create and nobody, not even me, can see your tests.</p>
+    </div>
+    <div class="privacy-list reveal">
+      <div class="row">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+        <div>
+          <h4>Processing on the device</h4>
+          <p>Photos, PDFs and value recognition stay inside the iPhone: nothing is uploaded to be analysed elsewhere.</p>
+        </div>
+      </div>
+      <div class="row">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <div>
+          <h4>No account, no tracking</h4>
+          <p>No sign-up, no third-party analytics and no ads. You can also protect the app with Face ID.</p>
+        </div>
+      </div>
+      <div class="row">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 9.2 4.4 4.4 0 0 0 6.5 19z"/></svg></span>
+        <div>
+          <h4>The backup is only yours</h4>
+          <p>If you turn on sync, your data travels encrypted to your personal iCloud, the same one as your photos and messages, not a Refertrack cloud.</p>
+        </div>
+      </div>
+      <a class="privacy-link" href="https://matteolubi.notion.site/Privacy-Policy-Refertrack-3a6ed23c41248163b045ed3b144ec696" target="_blank" rel="noopener">
+        Read the Privacy Policy (in Italian)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PREZZI -->
+<section class="section" id="prezzi">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Honest pricing</span>
+      <h2>Reading your reports is free. Forever.</h2>
+      <p>No trial clock and no card needed to start. Refertrack+ adds the extra features, as a yearly subscription or a one-time purchase.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <div class="tier">Free</div>
+        <div class="amount">€0<small> / forever</small></div>
+        <div class="sub">Everything you need to start keeping your tests in order.</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited scanning and recognition</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Trends and full history</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Archive of reports and documents</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Vaccines: overdue, due soon or up to date</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One profile and one active reminder</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://apps.apple.com/app/id6792460771">Download for free</a>
+      </div>
+      <div class="price premium reveal">
+        <span class="price-tag">Recommended</span>
+        <div class="tier">Refertrack+</div>
+        <div class="amount">€14.99<small> / year</small></div>
+        <div class="sub">or €44.99 one time: for life, no renewal.</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Side-by-side comparison of two reports</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> An extra profile for a family member</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Alert on values moving for 3 check-ups</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Chart to share with your doctor</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Vaccines: exact booster dates and a family record</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Archive search and unlimited reminders</li>
+        </ul>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6792460771">Discover Refertrack+</a>
+      </div>
+    </div>
+    <p class="price-note reveal">Report recognition stays free in any case and no data is ever deleted: if you don't renew, your archive and charts remain yours.</p>
+  </div>
+</section>
+
+<!-- =============================================================== FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How much does it cost?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>The app is free and report reading stays free forever, with no scan limits. Refertrack+ costs €14.99 a year or €44.99 one time (for life, no renewal) and adds comparison between reports, an extra profile, alerts on moving values, chart sharing, exact vaccine booster dates with a family record, and unlimited reminders.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is my health data safe?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>Yes: photos and values are processed on your iPhone, never on a Refertrack server. There is no account to create, no tracking, and the only backup is your personal iCloud, if you turn it on.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does it read reports in other languages?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>Yes. Refertrack speaks Italian, English, French, German and Spanish, and recognises parameter names on foreign reports in those languages, which is handy if you have tests done abroad.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does it track vaccines too?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>Yes. You photograph the vaccination certificate or enter the dates by hand, and Refertrack works out when each booster is due using your country's schedule (Italy, Germany, France, Spain) and reminds you. Knowing whether a vaccine is overdue or up to date is free; with Refertrack+ you see the exact dates and manage the whole family's record. Due dates are indicative and do not replace your doctor's advice.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does Refertrack tell me if a value is worrying?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>No, and that is not what it sets out to do. Refertrack organises your values and shows how they move against the lab's reference ranges: it does not diagnose and does not replace your doctor's advice.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Which devices does it work on?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="faq-a"><p>On iPhone with iOS 26 or later. Data syncs between your devices through your personal iCloud, if you turn sync on.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-card reveal">
+      <h2>Your tests, in order from today.</h2>
+      <p>Download it for free, photograph your first report and see what happens at your next check-up.</p>
+      <div class="hero-actions">
+        <a class="appstore" href="https://apps.apple.com/app/id6792460771" aria-label="Download on the App Store">
+          <img src="../assets/appstore-en.svg" alt="" width="162" height="54" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><img class="logo" src="../assets/icon.png" alt="" /> Refertrack</a>
+        <p class="desc">Your lab reports and vaccines, read by your phone and kept in order.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#come-funziona">How it works</a></li>
+          <li><a href="#funzioni">Features</a></li>
+          <li><a href="#prezzi">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Language</h5>
+        <ul>
+          <li><a href="../" hreflang="it" lang="it">Italiano</a></li>
+        </ul>
+        <h5 class="footer-gap">Download</h5>
+        <ul>
+          <li><a href="https://apps.apple.com/app/id6792460771">App Store</a></li>
+        </ul>
+        <h5 class="footer-gap">Support</h5>
+        <ul>
+          <li><a href="mailto:quillino.support@gmail.com">quillino.support@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="https://matteolubi.notion.site/Privacy-Policy-Refertrack-3a6ed23c41248163b045ed3b144ec696" target="_blank" rel="noopener">Privacy Policy (Italian)</a></li>
+          <li><a href="https://matteolubi.notion.site/Termini-di-Utilizzo-Refertrack-3a7ed23c412481b89db9dfd232201331" target="_blank" rel="noopener">Terms of Use (EULA, Italian)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Refertrack. All rights reserved.</span>
+      <span>Refertrack is not a medical device and does not replace your doctor's advice.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="theme-toggle theme-fab" id="themeFab" type="button" aria-label="Switch between light and dark preview">
+  <svg class="ico-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+  <svg class="ico-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+
+<script src="../script.js"></script>
+</body>
+</html>

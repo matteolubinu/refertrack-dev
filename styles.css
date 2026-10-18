@@ -388,3 +388,7 @@ ul, ol { padding: 0; list-style: none; }
 .footer-gap { margin-top: 22px; }
 .footer a { display: inline-block; padding: 6px 0; }
 .privacy-link { display: inline-block; padding: 8px 0; }
+
+/* Cambio lingua */
+.lang-switch { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-decoration: none; padding: 8px 6px; }
+.lang-switch:hover { color: var(--text-primary); }
